@@ -9,14 +9,13 @@ export default function App() {
 const [location,setLocation] = useState(null)
 const [userCoordinates,setUserCoordinates] = useState(null)
 
-// useEffect(() => {
- const getLocation=()=>{
 
+ const getLocation=() => {
     (async () => {
-      console.log(" --------- /n it has been 10 seconds")
+      // console.log(" --------- /n it has been 10 seconds")
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
+        console.log('Permission to access location was denied');
         return;
       }
       let location = await Location.getCurrentPositionAsync({});
@@ -42,7 +41,6 @@ const [userCoordinates,setUserCoordinates] = useState(null)
       {setTimeout(getLocation, 10000)}
   return (
     <>
-    
 {location && userCoordinates &&
     <View style={mapstyles.container}>
     <MapView
